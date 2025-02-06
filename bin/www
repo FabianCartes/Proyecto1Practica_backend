@@ -5,15 +5,17 @@
  */
 
 import app from '../src/app.js';
-var debug = require('debug')('backend:server');
+import debugLib from "debug";
+const debug = debugLib("backend:server");
 import { createServer } from 'http';
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+const port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
+
 
 /**
  * Create HTTP server.
