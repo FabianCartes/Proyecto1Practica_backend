@@ -8,21 +8,16 @@ import Option from "./entity/option.js";
 import Inscription from "./entity/inscription.js";
 import UserAnswer from "./entity/user_answer.js";
 
-// Carga las variables de entorno del archivo .env
+// Carga las variables de entorno
 dotenv.config();
 
-
 export const AppDataSource = new DataSource({
-    type: "postgres", // El tipo de base de datos (postgres, mysql, etc.)
-    host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT || "5432"),
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
+    type: "postgres",
+    url: process.env.DATABASE_URL, // Usa la URL de conexión en Railway
     synchronize: true, // Cambiar a "false" en producción
     logging: false,
-    entities: [User, Course, Section, Question, Option, Inscription,UserAnswer],
+    entities: [User, Course, Section, Question, Option, Inscription, UserAnswer],
     subscribers: [],
     migrations: [],
-})
-
+    ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false, // Necesario en Railway si requiere SSL
+});
