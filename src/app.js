@@ -22,7 +22,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000', // Permitir solicitudes solo desde este origen
+  origin: 'proyecto1practicabackend-production.up.railway.app', // Permitir solicitudes solo desde este origen
   methods: 'GET,POST,PUT,DELETE,OPTIONS,PATCH', // Métodos permitidos
   allowedHeaders: 'Content-Type,Authorization', // Encabezados permitidos
 }));
